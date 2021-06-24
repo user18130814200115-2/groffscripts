@@ -1,0 +1,44 @@
+.R1
+sort
+label "(A.n|Q) ', ' (D.y|D)"
+bracket-label " (" ) "; "
+database /home/user/.local/share/groff/bibliography.groff
+.R2
+
+.hy 0
+
+.de n
+.sp 0
+	 
+..
+.de tt
+.tp
+.ad c
+.ls 2
+.ps 25
+\\$1
+.sp
+.ps 16
+\\$2
+.sp 2
+.ad n
+.ls 1
+..
+.de ta
+.ad c
+.ps 13
+\\$1
+.sp 0.1
+.ps 12
+\\$2
+.sp
+.ad n
+..
+.de ref*biblio-start-hook
+.  +c References
+.  lp
+..
+.de ref*biblio-item-start
+.  ip "\s12\\$1"
+..
+

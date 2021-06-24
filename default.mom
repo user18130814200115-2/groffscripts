@@ -1,0 +1,36 @@
+\# ROMAN NUMERALS IN OTHER FILE
+.so /home/user/.local/share/groff/packages/roman.tmac
+\# REGISTERS
+.nr chapter 0
+\# MACROS
+.de NEW_CHAPTER
+.COLLATE
+.nr chapter (\\n[chapter]+1)
+.ie \\n[CHAPTER_STYLE]=1 .CHAPTER "\\[ROMAN\\n[chapter]]"
+.el .CHAPTER "\\n[chapter]"
+.CHAPTER_TITLE "\\$1"
+.TOC_TITLE_ENTRY "\\n[chapter] \\$1"
+.DOCTYPE CHAPTER
+.START
+..
+.de REFERENCE_STYLE
+.if "\\$1"chicago" .so /home/user/.local/share/groff/packages/chicago.tmac
+..
+.de CHAPTER_STYLE
+.ie "\\$1"roman" .nr CHAPTER_STYLE 1
+.el .nr CHAPTER_STYLE 0
+..
+\# BOILERPLATE
+.R1
+sort A+
+label "(@|Q) ', ' (D.y|D)"
+short-label "(D.y|D)"
+bracket-label " (" ) "; "
+database /home/user/.local/share/groff/bibliography.groff
+reverse A1
+.R2
+.blm PP
+.PRINTSTYLE TYPESET
+.AUTHOR "Thijs Wester"
+.PT_SIZE 12
+.FOOTNOTE_MARKER_STYLE NUMBER
