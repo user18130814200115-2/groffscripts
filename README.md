@@ -58,3 +58,4 @@ This Package is used in default.mom.
 ### chicago
 Package here for redundancy, see [chicago-refer](https://github.com/user18130814200115-2/chicago-refer).
 This Package is used in default.mom.
+The .R1 .R2 block cannot be sourced though, it must be actually included in the final compiled document.
