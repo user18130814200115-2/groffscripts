@@ -18,6 +18,9 @@ au BufWritePost bibliography.in ! preconv % > %:p:h/bibliography.groff
 command Automkdoc au BufWritePost * silent ! swaymsg exec "cd %:p:h && mkdoc %"
 command Book silent ! cd %:p:h; preconv % > processing/%; cd processing && mkdoc main.mom && cp main.pdf ../
 
+imap <C-b> \*[BOLD]\*[BOLDX]<left><left><left><left><left><left><left><left><left>
+imap <C-i> \*[SLANT]\*[SLANTX]<left><left><left><left><left><left><left><left><left><left>
+
 " Plugins Goyo and Limelight
 let g:limelight_conceal_ctermfg = 'gray'
 autocmd! User GoyoEnter Limelight
