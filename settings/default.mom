@@ -4,7 +4,7 @@
 .nr chapter 0
 \# MACROS
 .de NEW_CHAPTER
-.COLLATE
+.ie \\n[chapter]>0 .COLLATE
 .nr chapter (\\n[chapter]+1)
 .ie \\n[CHAPTER_STYLE]=1 .CHAPTER "\\[ROMAN\\n[chapter]]"
 .el .CHAPTER "\\n[chapter]"
@@ -12,7 +12,6 @@
 .TOC_TITLE_ENTRY "\\n[chapter] \\$1"
 .DOCTYPE CHAPTER
 .START
-..
 .de REFERENCE_STYLE
 .if "\\$1"chicago" .so /home/user/.local/share/groff/packages/chicago.tmac
 ..
