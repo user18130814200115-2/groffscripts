@@ -35,6 +35,7 @@ They must be placed in `~/.local/share/groff/settings` to be recognized by mkdoc
 - NEW_CHAPTER macro
   + this macro can be called to make a new chapter which is automatically given a number
   + $1 is the chapter title
+  + .COLLATE will but put as the first line IF the chapter is not the first. This way, I can start a new document with the singular line `.NEW_CHAPER` and optionally prepend settings such as `TITLE` or `CHAPTER_STYLE`.
 - CHAPTER_STYLE macro
   + used to change the numbers between `arabic` (default) and `roman`
   + $1 is the style
