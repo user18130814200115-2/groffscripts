@@ -20,7 +20,7 @@ C-b and C-i are set for bold and italic escape sequences.
 ### Syntax highlighting
 mom escape sequences are colored as "Todo".
 
-Fold syntax is set between orrurances of `.NEW_CHAPTER`.
+Fold syntax is set between occurrences of `.NEW_CHAPTER`.
 
 Colors are set to tundra, see [nord-tundra](https://github.com/user18130814200115-2/nordtheme_tundra).
 
@@ -60,3 +60,10 @@ This Package is used in default.mom.
 Package here for redundancy, see [chicago-refer](https://github.com/user18130814200115-2/chicago-refer).
 This Package is used in default.mom.
 The .R1 .R2 block cannot be sourced though, it must be actually included in the final compiled document.
+
+## Repo and releases
+I will draft a release for every batch of changes with the exception of this README.
+Actual changes to the workflow will increment the version number, bugfixes will increment the decimal.
+
+In other words, if you use version 1.1, you can and should use 1.2 if it comes out.
+However, version 2.1 might make changes to how everything works meaning that the same groff source file might compile differently.
