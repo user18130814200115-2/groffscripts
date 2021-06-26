@@ -15,6 +15,18 @@ The command Automkdoc, will execute the mkdoc command on your working file whene
 
 Furthermore, any files called `bibliography.in` will be processed by `preconv` and output to `bibliography.groff`
 
+C-b and C-i are set for bold and italic escape sequences.
+
+### Syntax highlighting
+mom escape sequences are colored as "Todo".
+
+Fold syntax is set between orrurances of `.NEW_CHAPTER`.
+
+Colors are set to tundra, see [nord-tundra](https://github.com/user18130814200115-2/nordtheme_tundra).
+
+### Plugins
+plugins I use are goyo and limelight.
+
 ## settings
 Settings in general contain boilerplate code for specific macro packages.
 They must be placed in `~/.local/share/groff/settings` to be recognized by mkdoc.
