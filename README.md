@@ -62,7 +62,7 @@ This Package is used in default.mom.
 The .R1 .R2 block cannot be sourced though, it must be actually included in the final compiled document.
 
 ### dropcap
-There are references to a sropcap macro, I did not make this myself.
+There are references to a dropcap macro, I did not make this myself.
 It can be found [here](https://lists.gnu.org/archive/html/groff/2005-03/msg00133.html)
 
 ## Repo and releases
