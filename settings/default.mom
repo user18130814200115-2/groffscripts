@@ -1,24 +1,100 @@
-\# ROMAN NUMERALS IN OTHER FILE
-.so /home/user/.local/share/groff/packages/roman.tmac
+.blm PP
+.PRINTSTYLE TYPESET
+.AUTHOR "Thijs Wester"
+.PT_SIZE 12
+
+.HEADING_STYLE 2 FAMILY C QUAD C
+.HEADING_STYLE 3 FAMILY C QUAD C FONT R
+
+.FOOTNOTE_MARKER_STYLE NUMBER
+
+.RECTO_VERSO
+.L_MARGIN 1i
+.R_MARGIN 0.75i
+
+.HEADER_RULE OFF
+.HEADER_FAMILY C
+
+.FOOTER_FAMILY C
+.PAGENUM_HYPHENS OFF
+
+.DOCHEADER_FAMILY C
+.CHAPTER_TITLE_FONT R
+.TITLE_FONT R
+
+.TOC_HEADER_FAMILY C
+.TOC_HEADER_QUAD C
+.TOC_HEADER_FONT R
+
+.de PLUGIN
+.so /home/user/.local/share/groff/packages/\\$1.tmac
+..
 \# REGISTERS
 .nr chapter 0
 \# MACROS
 .de NEW_CHAPTER
-.ie \\n[chapter]>0 .COLLATE
 .nr chapter (\\n[chapter]+1)
-.ie \\n[CHAPTER_STYLE]=1 .CHAPTER "\\[ROMAN\\n[chapter]]"
-.el .CHAPTER "\\n[chapter]"
-.CHAPTER_TITLE "\\$1"
-.TOC_TITLE_ENTRY "\\n[chapter] \\$1"
-.DOCTYPE CHAPTER
+.STRING CHAP \\[ROMAN\\n[chapter]]
+.HEADER_VERSO CENTER "^#Chapter \\*[CHAP] \\$1#"
+.HEADER_RECTO CENTER "^#\E*[$TITLE]#"
+.HEADERS OFF
+.NEWPAGE
+.HEADERS
+.PAGINATE
+.HEADING_STYLE 2 FAMILY C QUAD C FONT R
+.HEADING 2 "Chapter \\*[CHAP]" "\\$1"
+.PP
+..
+.de PROLOGUE
+.HEADER_VERSO CENTER "^#Prologue \\$1#"
+.HEADER_RECTO CENTER "^#\E*[$TITLE]#"
+.HEADERS OFF
+.NEWPAGE
+.HEADERS
+.PAGINATE
+.HEADING_STYLE 2 FAMILY C QUAD C FONT R
+.HEADING 2 "Prologue" "\\$1"
+.PP
+..
+.de COVERPAGE
+.PAGINATION OFF
+.PAGENUMBER 0
 .START
+..
+.de DEDICATION
+.HEADERS OFF
+.NEWPAGE
+.PAGENUMBER 0
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.QUAD CENTER
+..
 .de REFERENCE_STYLE
 .if "\\$1"chicago" .so /home/user/.local/share/groff/packages/chicago.tmac
 ..
-.de CHAPTER_STYLE
-.ie "\\$1"roman" .nr CHAPTER_STYLE 1
-.el .nr CHAPTER_STYLE 0
+.de DROPCAP
+.dropcap "\\$1" 3 black R
 ..
+.PLUGIN roman
 \# BOILERPLATE
 .R1
 sort A+
@@ -28,8 +104,3 @@ bracket-label " (" ) "; "
 database /home/user/.local/share/groff/bibliography.groff
 reverse A1
 .R2
-.blm PP
-.PRINTSTYLE TYPESET
-.AUTHOR "Thijs Wester"
-.PT_SIZE 12
-.FOOTNOTE_MARKER_STYLE NUMBER
