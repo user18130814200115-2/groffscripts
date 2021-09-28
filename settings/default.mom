@@ -64,35 +64,27 @@
 .de DEDICATION
 .HEADERS OFF
 .NEWPAGE
+.PP
 .PAGENUMBER 0
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+.PAGINATION OFF
 .QUAD CENTER
+.SP 10
+..
+.de FOLLOW
+\*[BCK .05i]\\$1
+..
+.de BOLD
+.FT B
+\\$1
+.FT R
+..
+.de ITALIC
+.FT I
+\\$1
+.FT R
 ..
 .de REFERENCE_STYLE
 .if "\\$1"chicago" .so /home/user/.local/share/groff/packages/chicago.tmac
-..
-.de DROPCAP
-.dropcap "\\$1" 3 black R
 ..
 .PLUGIN roman
 \# BOILERPLATE
