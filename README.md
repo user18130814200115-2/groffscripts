@@ -27,22 +27,51 @@ plugins I use are goyo and limelight.
 Settings in general contain boilerplate code for specific macro packages.
 They must be placed in `~/.local/share/groff/settings` to be recognized by mkdoc.
 ### mom
-- roman numeral support (see ## packages)
-- NEW_CHAPTER macro
-  + this macro can be called to make a new chapter which is automatically given a number
-  + $1 is the chapter title
-- PROLOGUE macro
-  + Like NEW_CHAPER, but will be called prologue instead
-- COVERPAGE macro
-  + Make sure the coverpage is not paginated, also starts the document
-- DEDICATION macro
-- REFERENCE_STYLE macro
-  + used to set the refer style (see ## packages)
-- PLUGIN macro
-  + can be called to load plugins (see ## packages)
-- miscellaneous settings
+#### .MARKUP
+Can be used to enable the default setting sfor a given style.
+Univeral among styles are heading styles, fontsize and footnotestyle (among others).
+While the style `BOOK` uses recto-verso printing on A5 paper
+and the style `ESSAY` loads the `REFER` settings and the `chicago` package.
 
-### me
+#### .PLUGIN
+Loads a package as explained in ##packages.
+
+#### .NEW_CHAPTER
+Starts a new chapter with a similar style to mom's `DOCTYPE CHAPTER`,
+but using regular headings instead for more fine-tuned controll.
+The chapters are automaticaly numbered and can be manually modified by writing to the `chapter` register.
+`NEW_CHAPTER` accepts an argument to name the cahpter in addition to it's number.
+
+#### .NEW_NAMED
+Same as `NEW_CAHPER` but without the `Chapter X` string, usefull for prologues, epilogues and alike.
+`NEW_NAMED` of course accepts an argument to give the name.
+
+#### .COVERPAGE
+Turns mom's DOCCOVER into a coverpage and delays pagination.
+
+#### .DEDICATION
+Generates a largely emptp, unnumbered page with a block of text in the centere.
+
+#### .BOLD/.ITALIC
+Prints $1 as bold/italic and follows with $2 imidiately.
+
+#### .REFER
+Loads my default dettings for the REFER preprocessor including sorting, brackets and the database file.
+This macro is capped by `.MARKUP ESSAY`
+
+#### .REFERENCES
+Adds a bibliography page where references are printed out.
+A title may be given as an argument, the default of 'References' is taken otherwise.
+
+#### .FOLLOW [depricated]
+Moves the cursor back the width of a space in `PT_SIZE 12`.
+Used previously to append periods and commas after .BOLD and .ITALIC.
+
+#### .REFERENCE_STYLE [depricated]
+Loads a plugin simmilarly to .PLUGIN, but only for the chicago.tmac refer macro.
+
+
+### me [depricated]
 - tt and ta for title pages
 - miscellaneous settings
 
