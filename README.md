@@ -16,9 +16,9 @@ The command Automkdoc, will execute the mkdoc command on your working file whene
 Furthermore, any files called `bibliography.in` will be processed by `preconv` and output to `bibliography.groff`
 
 ### Syntax highlighting
-mom escape sequences are colored as "Todo".
+mom escape sequences are coloured as "Todo".
 
-Colors are set to tundra, see [nord-tundra](https://github.com/user18130814200115-2/nordtheme_tundra).
+Colours are set to tundra, see [nord-tundra](https://github.com/user18130814200115-2/nordtheme_tundra).
 
 ### Plugins
 plugins I use are goyo and limelight.
@@ -28,8 +28,8 @@ Settings in general contain boilerplate code for specific macro packages.
 They must be placed in `~/.local/share/groff/settings` to be recognized by mkdoc.
 ### mom
 #### .MARKUP
-Can be used to enable the default setting sfor a given style.
-Univeral among styles are heading styles, fontsize and footnotestyle (among others).
+Can be used to enable the default settings for a given style.
+Universal among styles are heading styles, font size and footnote style (among others).
 While the style `BOOK` uses recto-verso printing on A5 paper
 and the style `ESSAY` loads the `REFER` settings and the `chicago` package.
 
@@ -38,37 +38,37 @@ Loads a package as explained in ##packages.
 
 #### .NEW_CHAPTER
 Starts a new chapter with a similar style to mom's `DOCTYPE CHAPTER`,
-but using regular headings instead for more fine-tuned controll.
-The chapters are automaticaly numbered and can be manually modified by writing to the `chapter` register.
-`NEW_CHAPTER` accepts an argument to name the cahpter in addition to it's number.
+but using regular headings instead for more fine-tuned control.
+The chapters are automatically numbered and can be manually modified by writing to the `chapter` register.
+`NEW_CHAPTER` accepts an argument to name the chapter in addition to it's number.
 
 #### .NEW_NAMED
-Same as `NEW_CAHPER` but without the `Chapter X` string, usefull for prologues, epilogues and alike.
+Same as `NEW_CAHPER` but without the `Chapter X` string, useful for prologues, epilogues and alike.
 `NEW_NAMED` of course accepts an argument to give the name.
 
 #### .COVERPAGE
-Turns mom's DOCCOVER into a coverpage and delays pagination.
+Turns mom's DOCCOVER into a cover page and delays pagination.
 
 #### .DEDICATION
-Generates a largely emptp, unnumbered page with a block of text in the centere.
+Generates a largely empty, unnumbered page with a block of text in the centre.
 
 #### .BOLD/.ITALIC
-Prints $1 as bold/italic and follows with $2 imidiately.
+Prints $1 as bold/italic and follows with $2 immediately in roman font.
 
 #### .REFER
-Loads my default dettings for the REFER preprocessor including sorting, brackets and the database file.
+Loads my default settings for the REFER preprocessor including sorting, brackets and the database file.
 This macro is capped by `.MARKUP ESSAY`
 
 #### .REFERENCES
 Adds a bibliography page where references are printed out.
 A title may be given as an argument, the default of 'References' is taken otherwise.
 
-#### .FOLLOW [depricated]
+#### .FOLLOW [deprecated]
 Moves the cursor back the width of a space in `PT_SIZE 12`.
 Used previously to append periods and commas after .BOLD and .ITALIC.
 
-#### .REFERENCE_STYLE [depricated]
-Loads a plugin simmilarly to .PLUGIN, but only for the chicago.tmac refer macro.
+#### .REFERENCE_STYLE [deprecated]
+Loads a plugin similarly to .PLUGIN, but only for the chicago.tmac refer macro.
 
 
 ### me [depricated]
@@ -81,7 +81,7 @@ The default.mom files includes a macro to load these packages called `PLUGIN`.
 They must be placed in `~/.local/share/groff/packages` to be recognized.
 
 ### roman
-The roman package registers 1000 roman numerals to be accessed programmatically.
+The roman package registers 1000 Roman numerals to be accessed programmatically.
 The syntax is `\[ROMANx]` where `x` is your number of choice.
 This Package is used in default.mom.
 
@@ -99,4 +99,4 @@ I will draft a release for every batch of changes with the exception of this REA
 Actual changes to the workflow will increment the version number, bugfixes will increment the decimal.
 
 In other words, if you use version 1.1, you can and should use 1.2 if it comes out.
-However, version 2.1 might make changes to how everything works meaning that the same groff source file might compile differently.
+However, version 2.1 might make changes to how everything works, meaning that the same groff source file might compile differently.
