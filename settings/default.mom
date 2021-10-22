@@ -1,37 +1,44 @@
-.blm PP
-.PRINTSTYLE TYPESET
-.AUTHOR "Thijs Wester"
-.PT_SIZE 12
-
-.HEADING_STYLE 2 FAMILY C QUAD C
-.HEADING_STYLE 3 FAMILY C QUAD C FONT R
-
-.FOOTNOTE_MARKER_STYLE NUMBER
-
-.RECTO_VERSO
-.L_MARGIN 1i
-.R_MARGIN 0.75i
-
-.HEADER_RULE OFF
-.HEADER_FAMILY C
-
-.FOOTER_FAMILY C
-.PAGENUM_HYPHENS OFF
-
-.DOCHEADER_FAMILY C
-.CHAPTER_TITLE_FONT R
-.TITLE_FONT R
-
-.TOC_HEADER_FAMILY C
-.TOC_HEADER_QUAD C
-.TOC_HEADER_FONT R
-
-.de PLUGIN
-.so /home/user/.local/share/groff/packages/\\$1.tmac
-..
 \# REGISTERS
 .nr chapter 0
 \# MACROS
+.de MARKUP
+.if "\\$1"BOOK" \{\
+.PAPER A5
+.L_MARGIN 1i
+.R_MARGIN 0.75i
+.RECTO_VERSO
+.HEADER_VERSO CENTER "^#\E*[$AUTHOR]#"
+.HEADER_RECTO CENTER "^#\E*[$TITLE]#"
+.BLOCKQUOTE_INDENT 1
+.BLOCKQUOTE_QUAD justified
+.\}
+.ie "\\$1"ESSAY" \{\
+.PLUGIN chicago
+.REFERENCE_STYLE chicago
+.REFER
+.\}
+.PLUGIN roman
+.blm PP
+.PRINTSTYLE TYPESET
+.PT_SIZE 12
+.HEADING_STYLE 1 FAMILY C QUAD C FONT R
+.HEADING_STYLE 2 FAMILY C QUAD C FONT R
+.HEADING_STYLE 3 FAMILY C QUAD C FONT R
+.FOOTNOTE_MARKER_STYLE NUMBER
+.HEADER_RULE OFF
+.HEADER_FAMILY C
+.FOOTER_FAMILY C
+.PAGENUM_HYPHENS OFF
+.DOCHEADER_FAMILY C
+.CHAPTER_TITLE_FONT R
+.TITLE_FONT R
+.TOC_HEADER_FAMILY C
+.TOC_HEADER_QUAD C
+.TOC_HEADER_FONT R
+..
+.de PLUGIN
+.so /home/user/.local/share/groff/packages/\\$1.tmac
+..
 .de NEW_CHAPTER
 .nr chapter (\\n[chapter]+1)
 .STRING CHAP \\[ROMAN\\n[chapter]]
@@ -41,32 +48,33 @@
 .NEWPAGE
 .HEADERS
 .PAGINATE
-.HEADING_STYLE 2 FAMILY C QUAD C FONT R
-.HEADING 2 "Chapter \\*[CHAP]" "\\$1"
+.HEADING_STYLE 1 FAMILY C QUAD C FONT R
+.HEADING 1 "Chapter \\*[CHAP]" "\\$1"
 .PP
 ..
-.de PROLOGUE
-.HEADER_VERSO CENTER "^#Prologue \\$1#"
+.de NEW_NAMED
+.HEADER_VERSO CENTER "^#\\$1#"
 .HEADER_RECTO CENTER "^#\E*[$TITLE]#"
 .HEADERS OFF
 .NEWPAGE
 .HEADERS
 .PAGINATE
-.HEADING_STYLE 2 FAMILY C QUAD C FONT R
-.HEADING 2 "Prologue" "\\$1"
+.HEADING_STYLE 1 FAMILY C QUAD C FONT R
+.HEADING 1 "\\$1" ""
 .PP
 ..
 .de COVERPAGE
 .PAGINATION OFF
+.HEADERS OFF
 .PAGENUMBER 0
 .START
+.NEWPAGE
 ..
 .de DEDICATION
 .HEADERS OFF
 .NEWPAGE
 .PP
 .PAGENUMBER 0
-.PAGINATION OFF
 .QUAD CENTER
 .SP 10
 ..
@@ -74,25 +82,29 @@
 \*[BCK .05i]\\$1
 ..
 .de BOLD
-.FT B
-\\$1
-.FT R
+\E*[BD]\\$1\E*[ROM]\\$2
 ..
 .de ITALIC
-.FT I
-\\$1
-.FT R
+\E*[IT]\\$1\E*[ROM]\\$2
 ..
 .de REFERENCE_STYLE
 .if "\\$1"chicago" .so /home/user/.local/share/groff/packages/chicago.tmac
 ..
-.PLUGIN roman
-\# BOILERPLATE
+.de REFER
 .R1
 sort A+
 label "(@|Q) ', ' (D.y|D)"
 short-label "(D.y|D)"
 bracket-label " (" ) "; "
-database /home/user/.local/share/groff/bibliography.groff
+database /home/user/.local/share/groff/.bibliography.groff
 reverse A1
 .R2
+..
+.de REFERENCES
+.ds reference_string \\$1
+.if "\\$1"" .ds reference_string References
+.NEWPAGE
+.HEADING 1 "\\*[reference_string]"
+.PP
+.QUAD LEFT
+..
