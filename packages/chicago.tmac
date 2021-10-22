@@ -28,10 +28,10 @@
 .ref*field D "."
 ..
 .de ref*add-T2
-.ref*field T "." "\[lq]" "\[rq]"
+.ref*field T "." "\[lq]" "\[rq]" "."
 ..
 .de ref*add-T1
-.ref*field T "." "\E*[IT]" \E*[ref*restore-ss]
+.ref*field T "." "\E*[IT]" \E*[ref*restore-ss] "."
 ..
 .de ref*add-J
 .ref*field J "" "\E*[IT]" \E*[ref*restore-ss]
@@ -40,13 +40,13 @@
 .ref*field V "" "" "" ","
 ..
 .de ref*add-N
-.ref*field N "" "no. " "" " :"
+.ref*field N "" "no. " "" ":"
 ..
 .de ref*add-S
 .ref*field S "" "(" ")" ""
 ..
 .de ref*add-P
-.ref*field P "" "" "" "."
+.ref*field P "" "" "" ""
 ..
 .de ref*add-B
 .ref*field B " in" "\E*[IT]" \E*[ref*restore-ss] ","
