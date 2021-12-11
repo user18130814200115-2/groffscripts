@@ -10,10 +10,11 @@ Keep in mind that `~` is currently set to my home folder `/home/user/` change th
 Furthermore, the default font I use is DejaVu, this does not come with groff so, once again, change this to suit your needs.
 
 ## nvim
-neovim is my editor of choice.
-The command Automkdoc, will execute the mkdoc command on your working file whenever you write `:w`.
+Neovim is my editor of choice.
+The command `Automkdoc`, will execute the mkdoc command on your working file whenever you write `:w`.
+`Autowrite` will save the file whenever the return key is pressed.
 
-Furthermore, any files called `bibliography.in` will be processed by `preconv` and output to `bibliography.groff`
+Furthermore, any files called `bibliography.enw` will be processed by `preconv` and output to `bibliography.groff`
 
 ### Syntax highlighting
 mom escape sequences are coloured as "Todo".
@@ -21,22 +22,21 @@ mom escape sequences are coloured as "Todo".
 Colours are set to tundra, see [nord-tundra](https://github.com/user18130814200115-2/nordtheme_tundra).
 
 ### Plugins
-plugins I use are goyo and limelight.
+plugins I use are Goyo and Limelight.
 
-## settings
-Settings in general contain boilerplate code for specific macro packages.
-They must be placed in `~/.local/share/groff/settings` to be recognized by mkdoc.
-### mom
-#### .MARKUP
+## Groff
+My Macros are built as a superset of the excellent `mom` macros.
+### .MARKUP
 Can be used to enable the default settings for a given style.
 Universal among styles are heading styles, font size and footnote style (among others).
 While the style `BOOK` uses recto-verso printing on A5 paper
 and the style `ESSAY` loads the `REFER` settings and the `chicago` package.
+`DRAFT` prints also on A5 with `printstyle TYPEWRITE`
 
-#### .PLUGIN
+### .PLUGIN
 Loads a package as explained in ##packages.
 
-#### .NEW_CHAPTER
+### .NEW_CHAPTER
 Starts a new chapter with a similar style to mom's `DOCTYPE CHAPTER`,
 but using regular headings instead for more fine-tuned control.
 The chapters are automatically numbered and can be manually modified by writing to the `chapter` register.
@@ -63,15 +63,16 @@ This macro is capped by `.MARKUP ESSAY`
 Adds a bibliography page where references are printed out.
 A title may be given as an argument, the default of 'References' is taken otherwise.
 
-#### .FOLLOW [deprecated]
+#### .FOLLOW
 Moves the cursor back the width of a space in `PT_SIZE 12`.
 Used previously to append periods and commas after .BOLD and .ITALIC.
 
-#### .REFERENCE_STYLE [deprecated]
-Loads a plugin similarly to .PLUGIN, but only for the chicago.tmac refer macro.
 
 
-### me [depricated]
+
+### me [deprecated]
+For the `me` macros I also once made a small superset.
+This set is however no longer maintained.
 - tt and ta for title pages
 - miscellaneous settings
 
