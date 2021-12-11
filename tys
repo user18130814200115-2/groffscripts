@@ -1,0 +1,15 @@
+#!/bin/sh
+
+id=$(shuf -i 1-9999 -n 1)
+
+pid() {
+    touch $1.mom 2> /dev/null
+    mkdoc $1.mom 2> /dev/null
+    zathura $1.pdf 2> /dev/null &
+    pid="$!"
+    echo $pid > /tmp/typesetpid$id
+}
+
+pid $1 &
+nvim $1.mom -c Automkdoc -c Autowrite -c Goyo &&\
+    kill $(cat /tmp/typesetpid$id)
