@@ -66,6 +66,24 @@ Prints $1 as bold/italic and follows with $2 immediately in roman font.
 Loads my default settings for the REFER preprocessor including sorting, brackets and the database file.
 This macro is capped by `.MARKUP ESSAY`
 
+#### .HIGHEST_CHAPTER
+By default, when printing a TOC,
+the chapter named (from .NEW_CHAPTER) are intended to all be in line,
+like so:
+```
+Chapter I     The journey begins
+Chapter II    An unexpecetd turn
+Chapter III   New friends
+Chapter IV    The battle at Brugge
+```
+As you can see, the chapter name is indented somewhat so that they are all in line.
+The maximum distance of this indent is set by the `.HIGHEST_CHAPTER` call.
+In the example above, the HIGHEST_CHAPTER should be set to "III" at least,
+or to a longer string if you want a larger indent.
+By default, the highest chapter in BOOK markup is set to "VIII",
+which is likely to be enough.
+This behaviour is alltogether disabled in DRAFT markup.
+
 #### .REFERENCES
 Adds a bibliography page where references are printed out.
 A title may be given as an argument, the default of 'References' is taken otherwise.
