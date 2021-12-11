@@ -4,11 +4,16 @@ macro=${1##*\.}
 # Default.$macro is the boilerplate I defined for that specific macro. This is prepended to the document. Ussually, this contains a .R1/.R2 block for refer and some default settings such as setting pagination, hypheation and adding my custom definitions.
 macrofile="$HOME/.local/share/groff/settings/default.$macro"
 
-# macrofile and the input file are ran trough groff
-## -U is used so pdfpic can automatically size images
-## -Tpdf is used to output to pdf
-## -R preprocess with refer (refer settings are given in the biolerplate defaults)
-## -m$macro set the macro to be used to the file extension
-## -fDejaVu specifies the default font to be DejaVu, this is a custom font not installed by default.
-## > "${1%%\.*}.pdf" means output to inputfile, but instead of the default extension, output to a .pdf. For isntance, filename.mom will output to filename.pdf
-cat "$macrofile" "$1" | groff -U -Tpdf -Kutf8 -R -m$macro -fDejaVu > "${1%%\.*}.pdf"
+# macrofile and the input file are ran trough groff together
+cat "$macrofile" "$1" |\
+# -U is used so pdfpic can automatically size images
+# -Tpdf is used to output to pdf
+# -R preprocess with refer (refer settings are given in the biolerplate defaults)
+# -m$macro set the macro to be used to the file extension
+# -fDeVuSe specifies the default font to be DejaVu, this is a custom font not installed by default.
+    ## This line does not work with the MOM macro set.
+# > "${1%%\.*}.pdf" means output to inputfile, but instead of the default extension, output to a .pdf. For isntance, filename.mom will output to filename.pdf
+# First, we output to a temporary file. This is done because zathura goes blank while groff is working if we edit the file directly.
+groff -t -p -U -Tpdf -Kutf8 -R -m$macro -fDeVuSe > "${1%%\.*}.tmp.pdf"
+## Here we move the temporary (not open) file, to the one open in our editor
+mv "${1%%\.*}.tmp.pdf" "${1%%\.*}.pdf"
