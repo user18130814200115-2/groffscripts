@@ -110,7 +110,7 @@
 .SP 10
 ..
 .de FOLLOW
-\*[BCK .05i]\\$1
+\h'-\w" "u'\\$1
 ..
 .de BOLD
 \E*[BD]\\$1\E*[ROM]\\$2
