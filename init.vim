@@ -3,17 +3,21 @@ function SetGroffOptions()
     set spell
     syntax match escapeSeq "\\\*\[[A-z]*\]"
     highlight link escapeSeq Todo
+    set foldmarker=.NEW_CHAPTER,.END_CHAPTER
+    set foldmethod=marker
+    set scrolloff=99
+    Limelight
 endfunction
 
 autocmd BufWinLeave * mkview
 autocmd BufWinEnter * silent! loadview
 
-au BufRead,BufNewFile *.groff,*.mom,*.chap,*.we,*.me call SetGroffOptions()
+au BufRead,BufNewFile *.groff,*.mom call SetGroffOptions()
 
 au BufWritePost bibliography.in ! preconv % > %:p:h/bibliography.groff
 
-command Automkdoc au BufWritePost * silent ! swaymsg exec "cd %:p:h && mkdoc %"
-command Autowrite inoremap <CR> <ESC>:w<CR>a<CR>
+command Automkdoc au BufWritePost * silent ! riverctl spawn "cd %:p:h && mkdoc %"
+command Autowrite inoremap <CR> <C-o>:w<CR><CR>
 
 " Plugins Goyo and Limelight
 let g:limelight_conceal_ctermfg = 'gray'
@@ -25,4 +29,4 @@ source ~/.config/nvim/tundra.vim
 
 let g:limelight_conceal_ctermfg = 'gray'
 autocmd! User GoyoEnter Limelight
-autocmd! User GoyoLeave Limelight!
+autocmd! User GoyoLeave Limelight! | q
