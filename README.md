@@ -2,12 +2,19 @@
 My personal collection of groff scripts
 
 ## mkdoc
-mkdoc is the shell script I use to compile my groff documents.
+`mkdoc` is the shell script I use to compile my groff documents.
 
 You simply give it a file with the syntax `<name>.<macro pagage>`, and it will select the right macro's and concatenate the default settings in `~/.local/share/groff/default.<macro package>`.
 
 Keep in mind that `~` is currently set to my home folder `/home/user/` change this to suit your needs.
 Furthermore, the default font I use is DejaVu, this does not come with groff so, once again, change this to suit your needs.
+
+## tys
+`tys` is a shell script I use as a bootstrapper to start a new typesetting document or open an existing one.
+The script is called with `$1` as the filename.
+Then it will open `$1.mom` in nvim and `$1.pdf` in zathura.
+Nvim will automatically start with `Automkdoc`, `Autowrite` and `Goyo` enabled.
+Lastly, when nvim is closed, the zathura pdf window is also closed.
 
 ## nvim
 Neovim is my editor of choice.
@@ -66,15 +73,6 @@ A title may be given as an argument, the default of 'References' is taken otherw
 #### .FOLLOW
 Moves the cursor back the width of a space in `PT_SIZE 12`.
 Used previously to append periods and commas after .BOLD and .ITALIC.
-
-
-
-
-### me [deprecated]
-For the `me` macros I also once made a small superset.
-This set is however no longer maintained.
-- tt and ta for title pages
-- miscellaneous settings
 
 ## packages
 Packages are tmac files designed to be sourced into groff projects.
