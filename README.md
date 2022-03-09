@@ -1,5 +1,5 @@
 # groffscripts
-My personal collection of groff scripts
+My personal collection files used for typesetting.
 
 ## mkdoc
 `mkdoc` is the shell script I use to compile my groff documents.
@@ -16,7 +16,12 @@ The script is called with `$1` as the filename.
 Then it will open `$1.mom` in nvim and `$1.pdf` in zathura.
 Nvim will automatically start with `Automkdoc`, `Autowrite` and `Goyo` enabled.
 Lastly, when nvim is closed, the zathura pdf window is also closed.
-More infor is included in the form of code comments.
+
+When opening a non-existing document,
+`tys` will attempt to construct a title (based on the provided filename)
+and assign a `MARKUP` based on the current working directory.
+
+More information is included in the form of code comments.
 
 ## nvim
 Neovim is my editor of choice.
@@ -62,7 +67,7 @@ Turns mom's DOCCOVER into a cover page and delays pagination.
 Generates a largely empty, unnumbered page with a block of text in the centre.
 
 #### .BOLD/.ITALIC
-Prints $1 as bold/italic with $2 immediately following and $3 immidiately preceding teh previous font.
+Prints $1 as bold/italic with $2 immediately following and $3 immediately preceding the previous font.
 
 #### .REFER
 Loads my default settings for the REFER preprocessor including sorting, brackets and the database file.
@@ -84,8 +89,8 @@ In the example above, the `HIGHEST_CHAPTER` should be set to "III" at least,
 or to a longer string if you want a larger indent.
 By default, the highest chapter in `BOOK` markup is set to "VIII",
 which is likely to be enough.
-This behaviour is alltogether disabled in `DRAFT` markup.
-The `LONGEST_CHAPTER` string does the same, but for the chapter names EG:
+This behaviour is altogether disabled in `DRAFT` markup.
+The `LONGEST_CHAPTER` string does the same, but for the chapter names, EG:
 ```
 Chapter I     The journey begins   .................... 1
 Chapter II    An unexpecetd turn   .................... 2
