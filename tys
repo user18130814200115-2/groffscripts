@@ -1,15 +1,47 @@
 #!/bin/sh
 
-id=$(shuf -i 1-9999 -n 1)
+# Get the name of the file file by removing a trailing period
+# This is done for easier zsh tabcompletion
+name=${1%%\.}
+# Name the source and compiled files
+raw="$name.mom"
+comp="$name.pdf"
 
-pid() {
-    touch $1.mom 2> /dev/null
-    mkdoc $1.mom 2> /dev/null
-    zathura $1.pdf 2> /dev/null &
-    pid="$!"
-    echo $pid > /tmp/typesetpid$id
-}
+# Setup commands to send to vim for loading plugins and alike
+commands="+Goyo +Autowrite +Automkdoc +startinsert"
 
-pid $1 &
-nvim $1.mom -c Automkdoc -c Autowrite -c Goyo &&\
-    kill $(cat /tmp/typesetpid$id)
+# If the given file does not exist, output a starting template and complile it
+if [ ! -e "$raw" ]; then
+    # Aproximate the title of the document based on the filemane
+    title=$(printf "$name" | sed -Ee 's/-/ /g' -e 's/\b[a-z]/\u&/g')
+    # Aproximate if the title is a question and add a questionmark is nessecary
+    [ $(printf "$title" | grep  -c "^Who\\|^What\\|^When\\|^Where\\|^Why") -gt 0 ] &&\
+        title="$title?"
+    
+    # Aproximate the markup based on the current directory structure
+    case $(pwd) in
+        *University*)markup=ESSAY;;
+        *Writing*)markup=BOOK;;
+        *)markup=DRAFT;;
+    esac
+
+    # Print the template
+    printf ".MARKUP $markup\n.TITLE \"$title\"\n.AUTHOR \"Thijs Wester\"\n.START\n\n\n" > $raw
+    # Compile
+    mkdoc $raw 2> /dev/null
+fi
+
+# Open the pdf in zathura in the background and save the pid
+zathura $comp 2> /dev/null &
+pid="$!"
+
+# Create a symlink to the file "%" this is for wordcount reasons
+ln -s $comp %
+
+# Open the source file in neovim
+nvim $commands "$raw"
+# Close zathura when neovim exists
+kill $pid
+
+# remove the symlink
+rm %
