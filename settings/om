@@ -10,11 +10,18 @@
 ..
 .de MARKUP
 .if "\\$1"DRAFT" \{\
-.PAPER A5
-.HIGHEST_CHAPTER ""
+.PAPER A4
+.STRING HIGHEST_CHAPTER ""
 .BLOCKQUOTE_INDENT .5
 .BLOCKQUOTE_QUAD justified
 .PRINTSTYLE TYPEWRITE
+\".TYPEWRITER_FAMILY "DeVuSaMo"
+.de ITALIC END
+\\$3
+.FOLLOW
+.UNDERSCORE "\\\\$1"
+.FOLLOW "\\\\$2"
+.END
 .HEADING_STYLE 1 FAMILY C QUAD C FONT R UNDERSCORE .5 .1
 .HEADING_STYLE 2 FAMILY C QUAD C FONT R UNDERSCORE .5 .1
 .HEADING_STYLE 3 FAMILY C QUAD C FONT R UNDERSCORE .5 .1
@@ -26,7 +33,7 @@
 .HEADER_RECTO CENTER "^#\E*[$TITLE]#"
 .BLOCKQUOTE_INDENT 1
 .BLOCKQUOTE_QUAD justified
-.HIGHEST_CHAPTER "VIII"
+.STRING HIGHEST_CHAPTER "VIII"
 .PRINTSTYLE TYPESET
 .L_MARGIN 1i
 .R_MARGIN 0.75i
@@ -35,6 +42,7 @@
 .HEADING_STYLE 3 FAMILY C QUAD C FONT R
 .\}
 .ie "\\$1"ESSAY" \{\
+.PAPER A4
 .PRINTSTYLE TYPESET
 .PLUGIN chicago
 .REFERENCE_STYLE chicago
@@ -63,9 +71,6 @@
 .de PLUGIN
 .so /home/user/.local/share/groff/packages/\\$1.tmac
 ..
-.de HIGHEST_CHAPTER
-.STRING HIGHEST_CHAPTER \\$1
-..
 .de NEW_CHAPTER
 .if "\\n[chapter]"0" .PAGENUM 0 
 .nr chapter (\\n[chapter]+1)
@@ -79,8 +84,10 @@
 .PAGINATE
 .HEADING_STYLE 1 FAMILY C QUAD C FONT R
 .nr width_adjust (\w'\\*[HIGHEST_CHAPTER]'-\w'\\*[CHAP]')
+.nr width_adjust2 (\w'\\*[LONGEST_CHAPTER]'-\w'\\$1')
 .if (\\n[width_adjust] <= 0) .nr width_adjust 0
-.HEADING 1 "Chapter \\*[CHAP]\h'\\n[width_adjust]u'" "\\$1"
+.if (\\n[width_adjust2] <= 0) .nr width_adjust 0
+.HEADING 1 "Chapter \\*[CHAP]" "\h'\\n[width_adjust]u'" "\\$1" "\h'\\n[width_adjust2]u'"
 .PP
 ..
 .de NEW_NAMED
@@ -113,22 +120,23 @@
 \h'-\w" "u'\\$1
 ..
 .de BOLD
-\E*[BD]\\$1\E*[ROM]\\$2
+\\$3\E*[BD]\\$1\E*[PREV]\\$2
 ..
 .de ITALIC
-\E*[IT]\\$1\E*[ROM]\\$2
+\\$3\E*[IT]\\$1\E*[PREV]\\$2
 ..
 .de REFERENCE_STYLE
 .if "\\$1"chicago" .so /home/user/.local/share/groff/packages/chicago.tmac
 ..
 .de REFER
 .R1
-sort A+
-label "(@|Q) ', ' (D.y|D)"
+sort AD+
+join-authors " and " ", " ", and "
+et-al " et al" 2 3
+label "(A.n|Q) ', ' (D.y|D)"
 short-label "(D.y|D)"
 bracket-label " (" ) "; "
 database /home/user/.local/share/groff/.bibliography.groff
-reverse A1
 .R2
 ..
 .de REFERENCES
