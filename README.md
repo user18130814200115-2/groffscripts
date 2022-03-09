@@ -4,7 +4,8 @@ My personal collection of groff scripts
 ## mkdoc
 `mkdoc` is the shell script I use to compile my groff documents.
 
-You simply give it a file with the syntax `<name>.<macro pagage>`, and it will select the right macro's and concatenate the default settings in `~/.local/share/groff/default.<macro package>`.
+You simply give it a file with the syntax `<name>.<macro pagage>`, and it will select the right macro's and concatenate the default settings in `~/.local/share/groff/<macro package>`.
+EG. For `test.mom`, the file `~/.local/share/groff/om` will be loaded.
 
 Keep in mind that `~` is currently set to my home folder `/home/user/` change this to suit your needs.
 Furthermore, the default font I use is DejaVu, this does not come with groff so, once again, change this to suit your needs.
@@ -15,6 +16,7 @@ The script is called with `$1` as the filename.
 Then it will open `$1.mom` in nvim and `$1.pdf` in zathura.
 Nvim will automatically start with `Automkdoc`, `Autowrite` and `Goyo` enabled.
 Lastly, when nvim is closed, the zathura pdf window is also closed.
+More infor is included in the form of code comments.
 
 ## nvim
 Neovim is my editor of choice.
@@ -60,36 +62,43 @@ Turns mom's DOCCOVER into a cover page and delays pagination.
 Generates a largely empty, unnumbered page with a block of text in the centre.
 
 #### .BOLD/.ITALIC
-Prints $1 as bold/italic and follows with $2 immediately in roman font.
+Prints $1 as bold/italic with $2 immediately following and $3 immidiately preceding teh previous font.
 
 #### .REFER
 Loads my default settings for the REFER preprocessor including sorting, brackets and the database file.
 This macro is capped by `.MARKUP ESSAY`
 
-#### .HIGHEST_CHAPTER
+#### .STRING HIGHEST_CHAPTER & LONGEST_CHAPTER
 By default, when printing a TOC,
 the chapter named (from .NEW_CHAPTER) are intended to all be in line,
 like so:
 ```
-Chapter I     The journey begins
-Chapter II    An unexpecetd turn
-Chapter III   New friends
-Chapter IV    The battle at Brugge
+Chapter I     The journey begins ....................... 1
+Chapter II    An unexpecetd turn ....................... 2
+Chapter III   New friends .............................. 3
+Chapter IV    The battle at Brugge ..................... 4
 ```
 As you can see, the chapter name is indented somewhat so that they are all in line.
 The maximum distance of this indent is set by the `.HIGHEST_CHAPTER` call.
-In the example above, the HIGHEST_CHAPTER should be set to "III" at least,
+In the example above, the `HIGHEST_CHAPTER` should be set to "III" at least,
 or to a longer string if you want a larger indent.
-By default, the highest chapter in BOOK markup is set to "VIII",
+By default, the highest chapter in `BOOK` markup is set to "VIII",
 which is likely to be enough.
-This behaviour is alltogether disabled in DRAFT markup.
+This behaviour is alltogether disabled in `DRAFT` markup.
+The `LONGEST_CHAPTER` string does the same, but for the chapter names EG:
+```
+Chapter I     The journey begins   .................... 1
+Chapter II    An unexpecetd turn   .................... 2
+Chapter III   New friends          .................... 3
+Chapter IV    The battle at Brugge .................... 4
+```
 
 #### .REFERENCES
 Adds a bibliography page where references are printed out.
 A title may be given as an argument, the default of 'References' is taken otherwise.
 
 #### .FOLLOW
-Moves the cursor back the width of a space in `PT_SIZE 12`.
+Moves the cursor back the width of a space.
 Used previously to append periods and commas after .BOLD and .ITALIC.
 
 ## packages
