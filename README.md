@@ -104,8 +104,13 @@ This Package is used in default.mom.
 
 ### chicago
 Package here for redundancy, see [chicago-refer](https://github.com/user18130814200115-2/chicago-refer).
-This Package is used in default.mom.
+This Package is used in `om`.
 The .R1 .R2 block cannot be sourced though, it must be actually included in the final compiled document.
+
+### list
+This package allows for making easier bulleted lists with `mom`.
+The syntax is simple, use `.>` for the first level `.>>` for the second and so forth.
+The limit is currently set to 9 indented lists, though this is a variable you can change in the file.
 
 ### dropcap
 There are references to a dropcap macro, I did not make this myself.
