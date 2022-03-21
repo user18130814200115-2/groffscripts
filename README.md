@@ -38,6 +38,14 @@ Colours are set to tundra, see [nord-tundra](https://github.com/user181308142001
 ### Plugins
 plugins I use are Goyo and Limelight.
 
+## Gedit (GTK sourceview)
+I have made a gtksourceview language speciication file for editors such as gedit.
+It is called `groff.lang` and should be installed to
+`/usr/share/gtksourceview-X/language-specs` for system-wide, or
+`~/.local/share/gtksourceview-X/language-specs` for a per-user install.
+Replace X in the above path with the version of gtksourceview you are running
+(most recent is 4).
+
 ## Groff
 My Macros are built as a superset of the excellent `mom` macros.
 ### .MARKUP
@@ -102,10 +110,6 @@ Chapter IV    The battle at Brugge .................... 4
 Adds a bibliography page where references are printed out.
 A title may be given as an argument, the default of 'References' is taken otherwise.
 
-#### .FOLLOW
-Moves the cursor back the width of a space.
-Used previously to append periods and commas after .BOLD and .ITALIC.
-
 ## packages
 Packages are tmac files designed to be sourced into groff projects.
 The default.mom files includes a macro to load these packages called `PLUGIN`.
@@ -129,10 +133,3 @@ The limit is currently set to 9 indented lists, though this is a variable you ca
 ### dropcap
 There are references to a dropcap macro, I did not make this myself.
 It can be found [here](https://lists.gnu.org/archive/html/groff/2005-03/msg00133.html)
-
-## Repo and releases
-I will draft a release for every batch of changes with the exception of this README.
-Actual changes to the workflow will increment the version number, bugfixes will increment the decimal.
-
-In other words, if you use version 1.1, you can and should use 1.2 if it comes out.
-However, version 2.1 might make changes to how everything works, meaning that the same groff source file might compile differently.
