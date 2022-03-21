@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<language id="groff" _name="GNU troff" version="2.0" _section="Markup">
+  <metadata>
+    <property name="mimetypes">text/plain</property>
+    <property name="globs">*.mom;*.me;*.ms;*.mm*;.tmac</property>
+  </metadata>
+
+  <styles>
+    <style id="macro" _name="Macro"  map-to="def:constant" />
+    <style id="escape" _name="Escape sequence"  map-to="def:special-char" />
+    <style id="comment" _name="Comment"  map-to="def:comment" />
+    <style id="refer" _name="GNU refer block"  map-to="def:preprocessor" />
+  </styles>
+  <definitions>
+    <context id="groff">
+      <include>
+	<context id="commentBlock" style-ref="comment">
+	  <start>\.ig</start>
+	  <end>\.\.</end>
+        </context>
+	<context id="refer" style-ref="refer">
+	  <start>^\.\[.*$</start>
+	  <end>^\.\].*$</end>
+        </context>
+       	<context id="referBlock" style-ref="refer">
+	  <start>^.R1</start>
+	  <end>^.R2</end>
+        </context>
+	<context id="comment" style-ref="comment">
+	  <match>\\[#\"].*$</match>
+        </context>
+        <context id="macro" style-ref="macro">
+	  <match>^\.[^ ]+</match>
+        </context>
+	<context id="escape" style-ref="escape">
+	  <match>\\[^ ]+</match>
+        </context>
+      </include>
+    </context>
+  </definitions>
+</language>
