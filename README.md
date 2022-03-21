@@ -15,6 +15,7 @@ Supported editors are
 ## Settings
 The settings file in this repo is designed to be concatenated
 (for instance, with `cat`) BEFORE your groff working document.
+This is done automatically by the `mkdoc` script.
 My Macros are built as a superset of the excellent `mom` macros.
 
 ## packages
