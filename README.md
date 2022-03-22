@@ -1,4 +1,4 @@
-# groffscripts
+# groffscripts (modular branch)
 My personal collection files used for typesetting.
 Check the respective folders for more information and documentation
 
@@ -12,14 +12,16 @@ Supported editors are
 - (neo)vim
 - Gedit
 
-## Settings
-The settings file in this repo is designed to be concatenated
-(for instance, with `cat`) BEFORE your groff working document.
-This is done automatically by the `mkdoc` script.
-My Macros are built as a superset of the excellent `mom` macros.
-
-## packages
-Packages are tmac files designed to be sourced into groff projects.
-The `settings/om` files includes a macro to load these packages called `PLUGIN`.
-They must be placed in `~/.local/share/groff/packages` to be recognized.
-
+## Modules
+The "modules" folder contains a number of source-able `tmac` files
+which can be inserted into any given `groff_mom` file.
+The only exception is `eme.tmac` which is a file callable by `groff`
+on the command line as a macro.
+```
+groff -meme
+```
+This file sources all modules in the repository.
+The modules should be installed into
+`/usr/share/groff/current/tmac/modues/`
+except for `eme.tmac` which should be placed in
+`/usr/share/groff/current/tmac/`
