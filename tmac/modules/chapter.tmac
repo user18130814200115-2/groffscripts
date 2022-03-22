@@ -1,0 +1,46 @@
+.nr chapter 0
+.de NEW_CHAPTER
+.if "\\n[chapter]"0" .PAGENUM 0 
+.nr chapter (\\n[chapter]+1)
+.STRING CHAP \\[ROMAN\\n[chapter]]
+.HEADER_VERSO CENTER "^#\\$1#"
+.if "\\$1"" .HEADER_VERSO CENTER "^#Chapter \\*[CHAP]#"
+.HEADER_RECTO CENTER "^#\E*[$TITLE]#"
+.HEADERS OFF
+.NEWPAGE
+.HEADERS
+.PAGINATE
+.HEADING_STYLE 1 FAMILY C QUAD C FONT R
+.nr width_adjust (\w'\\*[HIGHEST_CHAPTER]'-\w'\\*[CHAP]')
+.nr width_adjust2 (\w'\\*[LONGEST_CHAPTER]'-\w'\\$1')
+.if (\\n[width_adjust] <= 0) .nr width_adjust 0
+.if (\\n[width_adjust2] <= 0) .nr width_adjust 0
+.HEADING 1 "Chapter \\*[CHAP]" "\h'\\n[width_adjust]u'" "\\$1" "\h'\\n[width_adjust2]u'"
+.PP
+..
+.de NEW_NAMED
+.HEADER_VERSO CENTER "^#\\$1#"
+.HEADER_RECTO CENTER "^#\E*[$TITLE]#"
+.HEADERS OFF
+.NEWPAGE
+.HEADERS
+.PAGINATE
+.HEADING_STYLE 1 FAMILY C QUAD C FONT R
+.HEADING 1 "\\$1" ""
+.PP
+..
+.de COVERPAGE
+.PAGINATION OFF
+.HEADERS OFF
+.PAGENUMBER 0
+.START
+.NEWPAGE
+..
+.de DEDICATION
+.HEADERS OFF
+.NEWPAGE
+.PP
+.PAGENUMBER 0
+.QUAD CENTER
+.SP 10
+..
