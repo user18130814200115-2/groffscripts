@@ -1,11 +1,8 @@
 ## mkdoc
 `mkdoc` is the shell script I use to compile my groff documents.
 
-You simply give it a file with the syntax `<name>.<macro pagage>`, and it will select the right macro's and concatenate the default settings in `~/.local/share/groff/<macro package>`.
-EG. For `test.mom`, the file `~/.local/share/groff/om` will be loaded.
-
-Keep in mind that `~` is currently set to my home folder `/home/user/` change this to suit your needs.
-Furthermore, the default font I use is DejaVu, this does not come with groff so, once again, change this to suit your needs.
+You simply give it a file with the syntax `<name>.<macro pagage>`, and it will select the right macro's and concatenate the default settings in `$XDG_TEMPLATES_DIR/<macro package>`.
+Mkdoc will compile your groff file to `<name>.pdf`
 
 ## tys
 `tys` is a shell script I use as a bootstrapper to start a new typesetting document or open an existing one.

@@ -1,13 +1,35 @@
-## om
-### .MARKUP
-Can be used to enable the default settings for a given style.
-Universal among styles are heading styles, font size and footnote style (among others).
-While the style `BOOK` uses recto-verso printing on A5 paper
-and the style `ESSAY` loads the `REFER` settings and the `chicago` package.
-`DRAFT` prints also on A5 with `printstyle TYPEWRITE`
+# modules
+## module
+Defines `.MODULE` to load a module with name $1,
+for instance
+```
+.MODULE roman
+```
+will load the roman.tmac file, provided it is in the right place.
 
-### .PLUGIN
-Loads a package as explained in ##packages.
+## roman
+Registers 1000 Roman numerals to be accessed programmatically.
+The syntax is `\[ROMANx]` where `x` is your number of choice.
+
+## chicago
+Package here for redundancy, see [chicago-refer](https://github.com/user18130814200115-2/chicago-refer).
+
+## list
+This package allows for making easier bulleted lists with `mom`.
+The syntax is simple, use `.>` for the first level `.>>` for the second and so forth.
+The limit is currently set to 9 indented lists, though this is a variable you can change in the file.
+
+### markup
+Defines `.MARKUP` to be put at the top of a `groff_mom` files. 
+This macro can be used to enable the default settings for a given style.
+The style `BOOK` uses recto-verso printing on A5 paper,
+the style `ESSAY` emplays neary-default mom settings on A4 paper,
+`DRAFT` prints also on A4 with `printstyle TYPEWRITE`.
+See `markup.tmac` for a full list of settings.
+
+## chapter
+Defines a number of macros usefull for working with chapters
+(especially novel chapters).
 
 ### .NEW_CHAPTER
 Starts a new chapter with a similar style to mom's `DOCTYPE CHAPTER`,
@@ -25,14 +47,9 @@ Turns mom's DOCCOVER into a cover page and delays pagination.
 #### .DEDICATION
 Generates a largely empty, unnumbered page with a block of text in the centre.
 
-#### .BOLD/.ITALIC
-Prints $1 as bold/italic with $2 immediately following and $3 immediately preceding the previous font.
-
-#### .REFER
-Loads my default settings for the REFER preprocessor including sorting, brackets and the database file.
-This macro is capped by `.MARKUP ESSAY`
-
-#### .STRING HIGHEST_CHAPTER & LONGEST_CHAPTER
+#### HIGHEST_CHAPTER & LONGEST_CHAPTER
+The chaper plugin also defines two registers called 
+HIGHEST_CHAPTER and LONGEST_CHAPTER
 By default, when printing a TOC,
 the chapter named (from .NEW_CHAPTER) are intended to all be in line,
 like so:
@@ -57,6 +74,13 @@ Chapter III   New friends          .................... 3
 Chapter IV    The battle at Brugge .................... 4
 ```
 
-#### .REFERENCES
-Adds a bibliography page where references are printed out.
-A title may be given as an argument, the default of 'References' is taken otherwise.
+## fontmod
+Defines two macros, `.BOLD` and `.ITALIC`.
+These will print the first agrument in bold-, and italic- fonts respectively,
+immidiately following with the 2nd argument and preceding with the 3rd.
+For instance,
+```
+.BOLD BOLD ) (
+```
+Will compile to `(BOLD)`
+with "BOLD" in a bold font (so long as a bold font is avaiable).

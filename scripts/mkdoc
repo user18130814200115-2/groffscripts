@@ -1,8 +1,9 @@
 #!/bin/sh
-# I have the macro set as the file extension, for instance the file `filename.mom` will use the mom macros, `filename.we the we macros etc
+# I have the macro set as the file extension, for instance the file `filename.mom` will use the mom macros, `filename.meme the meme macros etc
 macro=${1##*\.m}
-# Default.$macro is the boilerplate I defined for that specific macro. This is prepended to the document. Ussually, this contains a .R1/.R2 block for refer and some default settings such as setting pagination, hypheation and adding my custom definitions.
-macrofile="$HOME/.local/share/groff/settings/$macro"
+# You can put a file with the name of your prefered groff macro in your XDG_TEMPLATES_DIR to be prepended to the document. Ussually, this contains a .R1/.R2 block for refer as these settings annot be included by groff's .so primitive.
+[ -z $XDG_TEMPLATES_DIR ] && XDG_TEMPLATES_DIR="$HOME/Templates"
+macrofile="$XDG_TEMPLATES_DIR$macro"
 
 # macrofile and the input file are ran trough groff together
 cat "$macrofile" "$1" |\
@@ -10,10 +11,8 @@ cat "$macrofile" "$1" |\
 # -Tpdf is used to output to pdf
 # -R preprocess with refer (refer settings are given in the biolerplate defaults)
 # -m$macro set the macro to be used to the file extension
-# -fDeVuSe specifies the default font to be DejaVu, this is a custom font not installed by default.
-    ## This line does not work with the MOM macro set.
 # > "${1%%\.*}.pdf" means output to inputfile, but instead of the default extension, output to a .pdf. For isntance, filename.mom will output to filename.pdf
 # First, we output to a temporary file. This is done because zathura goes blank while groff is working if we edit the file directly.
-groff -t -p -U -Tpdf -Kutf8 -R -m$macro -fDeVuSe > "${1%\.*}.tmp.pdf"
+groff -t -p -U -Tpdf -Kutf8 -R -m$macro > "${1%\.*}.tmp.pdf"
 ## Here we move the temporary (not open) file, to the one open in our editor
 mv "${1%\.*}.tmp.pdf" "${1%\.*}.pdf"
