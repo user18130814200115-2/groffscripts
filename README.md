@@ -15,14 +15,15 @@ Supported editors are
 ## Modules
 The "modules" folder contains a number of source-able `tmac` files
 which can be inserted into any given `groff_mom` file.
-The only exception is `eme.tmac` which is a file callable by `groff`
+The only exception is `od.tmac` which is a file callable by `groff`
 on the command line as a macro.
 ```
-groff -meme
+groff -mod
 ```
-This file sources all modules in the repository.
+This file combines the ability to call modules (with the `.MODULE` macro)
+with the `mom` macro set.
 The modules should be installed into
 `/usr/share/groff/current/tmac/modues/`
-except for `od.tmac` which should be placed in
+While `od.tmac` which should be placed in
 `/usr/share/groff/current/tmac/`.
 Information on the specific modules can be found in `tmac/README.md`.
