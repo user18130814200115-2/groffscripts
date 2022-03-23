@@ -6,6 +6,9 @@ for instance
 .MODULE roman
 ```
 will load the roman.tmac file, provided it is in the right place.
+The `od` macros will load this module thereby allowing you to load further
+modules easily.
+
 
 ## roman
 Registers 1000 Roman numerals to be accessed programmatically.

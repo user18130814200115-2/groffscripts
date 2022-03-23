@@ -23,6 +23,6 @@ groff -meme
 This file sources all modules in the repository.
 The modules should be installed into
 `/usr/share/groff/current/tmac/modues/`
-except for `eme.tmac` which should be placed in
+except for `od.tmac` which should be placed in
 `/usr/share/groff/current/tmac/`.
-Information on the specific modules can be found in `tmac/README.md`
+Information on the specific modules can be found in `tmac/README.md`.
