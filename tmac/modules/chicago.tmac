@@ -97,3 +97,15 @@
 .rm ref*string
 .rm [F [T1 [T2
 ..
+.de chicago
+.tm1 [chicago]: please manually add a refer block containing the following info:
+.tm1 .R1
+.tm1 label "(A.n|Q) ', ' (D.y|D)"
+.tm1 bracket-label " (" ")" ", "
+.tm1 join-authors ", and " ", " ", and "
+.tm1 move-punctuation
+.tm1 reverse A1
+.tm1 sort A1Q1T1B1E1
+.tm1 database [PATH_TO_DATABASE]
+.tm1 .R2
+..

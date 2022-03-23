@@ -15,7 +15,11 @@ Registers 1000 Roman numerals to be accessed programmatically.
 The syntax is `\[ROMANx]` where `x` is your number of choice.
 
 ## chicago
-Package here for redundancy, see [chicago-refer](https://github.com/user18130814200115-2/chicago-refer).
+This package has [it's own repo](https://github.com/user18130814200115-2/chicago-refer) too.
+Make refer output references according to the
+[Chicago manual of style](https://www.chicagomanualofstyle.org/home.html).
+
+You will need to manually set the GNU refer settings, either from the comandline or with a .R1/.R2 block. You can output the recommended block to the commandline with the macro `.chicago`.
 
 ## list
 This package allows for making easier bulleted lists with `mom`.
