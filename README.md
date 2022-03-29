@@ -22,8 +22,18 @@ groff -mod
 ```
 This file combines the ability to call modules (with the `.MODULE` macro)
 with the `mom` macro set.
-The modules should be installed into
+Information on the specific modules can be found in `tmac/README.md`.
+
+### Installation
+The modules should be installed to the groff macro folder,
+on most systems this will be:
 `/usr/share/groff/current/tmac/modues/`
 While `od.tmac` which should be placed in
 `/usr/share/groff/current/tmac/`.
-Information on the specific modules can be found in `tmac/README.md`.
+
+Alternatively, you may install the modules folder and od.tmac file
+to a more accessible location and add it to the `GROFF_TMAC_DIR`
+variable like so:
+`export GROFF_TMAC_PATH=prefered/folder/path`.
+I personally keep my files in
+`$XDG_DATA_DIR/groff/tmac`
