@@ -32,7 +32,7 @@ While `od.tmac` which should be placed in
 `/usr/share/groff/current/tmac/`.
 
 Alternatively, you may install the modules folder and od.tmac file
-to a more accessible location and add it to the `GROFF_TMAC_DIR`
+to a more accessible location and add it to the `GROFF_TMAC_PATH`
 variable like so:
 `export GROFF_TMAC_PATH=prefered/folder/path`.
 I personally keep my files in
