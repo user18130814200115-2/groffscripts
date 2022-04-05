@@ -15,25 +15,25 @@ Supported editors are
 ## Modules
 The "modules" folder contains a number of source-able `tmac` files
 which can be inserted into any given `groff_mom` file.
-The only exception is `od.tmac` which is a file callable by `groff`
-on the command line as a macro.
+The only exception is `od.tmac` which is a macro superset of mom
+callable like so:
 ```
 groff -mod
 ```
-This file combines the ability to call modules (with the `.MODULE` macro)
+This file combines the ability to call modules (`.MODULE`)
 with the `mom` macro set.
 Information on the specific modules can be found in `tmac/README.md`.
 
 ### Installation
-The modules should be installed to the groff macro folder,
-on most systems this will be:
-`/usr/share/groff/current/tmac/modues/`
-While `od.tmac` which should be placed in
-`/usr/share/groff/current/tmac/`.
+The modules should be installed to a valif groff macro folder,
+the prefered install path is `~/.local/share/groff/`.
+Keep in mind that this is not a default groff path.
+To allow groff to call mdules in this path, you need to source the `environmet`
+file in your shell's env file (for instance `.zshenv`, `.bashrc`).
+This file also presets the groff compiler to use utf-8 encoding
+and the -Tpdf output device.
+It also allows for the installation of fonts to
+`~/.local/share/groff/site-font/`
 
 Alternatively, you may install the modules folder and od.tmac file
-to a more accessible location and add it to the `GROFF_TMAC_PATH`
-variable like so:
-`export GROFF_TMAC_PATH=prefered/folder/path`.
-I personally keep my files in
-`$XDG_DATA_DIR/groff/tmac`
+directly to `/usr/share/groff/tmac`.
