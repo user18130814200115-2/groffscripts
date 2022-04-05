@@ -4,8 +4,8 @@ Check the respective folders for more information and documentation
 
 ## Scrips
 I use a few scripts to accelerate my workflow
-- mkdoc compile groff documents
-- tys bootstrap an editing environment / template
+- mkdoc: compile groff documents
+- tys: bootstrap an editing environment / template
 
 ## Editors
 Supported editors are
