@@ -4,7 +4,7 @@ Data folder should be installed to a valid groff folder,
 the preferred install path is `~/.local/share/groff/`.
 
 Keep in mind that this is not a default groff path.
-To allow groff to call modules in this path, you need to source the `environemnt`
+To allow groff to call modules in this path, you need to source the `environment`
 file in your shell's `env` file (for instance `.zshenv` or `.bashrc`).
 This file also presets the groff compiler to use utf-8 encoding
 and the -Tpdf output device.
