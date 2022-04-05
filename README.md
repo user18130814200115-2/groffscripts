@@ -22,7 +22,7 @@ groff -mod
 ```
 This file combines the ability to call modules (`.MODULE`)
 with the `mom` macro set.
-Information on the specific modules can be found in `tmac/README.md`.
+Information on the specific modules can be found in `data/README.md`.
 
 ### Installation
 The modules should be installed to a valif groff macro folder,
