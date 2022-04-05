@@ -1,0 +1,4 @@
+export GROFF_TMAC_PATH=$XDG_DATA_DIR/groff/tmac
+export GROFF_FONT_PATH=$XDG_DATA_DIR/groff/site-font
+export GROFF_TYPESETTER=pdf
+export GROFF_ENCODING=utf8

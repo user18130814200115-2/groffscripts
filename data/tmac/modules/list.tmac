@@ -1,0 +1,37 @@
+.de terminate
+.ie (\\n[indent] > 0) \{\
+.LIST OFF
+.nr indent -1
+.terminate
+.\}
+.el \{\
+.blm PP
+.PP
+.\}
+..
+.de setIndent
+.blm terminate
+.if (\\n[indent] > \\$1) \{\
+.LIST OFF
+.nr indent -1
+.setIndent \\$1
+.\}
+.if (\\n[indent] < \\$1) \{\
+.LIST
+.nr indent +1
+.setIndent \\$1
+.\}
+..
+.de loop
+.nr num +1
+.ds name \\*[name]>
+.if (\\n[num] < 10) \{\
+.de \\*[name] end
+.setIndent \\n[num]
+.ITEM
+\\\\$*
+.end
+.loop
+.\}
+..
+.loop
