@@ -82,12 +82,21 @@ Chapter IV    The battle at Brugge .................... 4
 ```
 
 ## fontmod
-Defines two macros, `.BOLD` and `.ITALIC`.
-These will print the first agrument in bold-, and italic- fonts respectively,
+Defines macro's for wrking with different fonts (`BOLD`, `ITALIC`, `BOLDITAIC`, `FONTMOD`).
+These will print the first agrument the modified font,
 immidiately following with the 2nd argument and preceding with the 3rd.
 For instance,
 ```
-.BOLD BOLD ) (
+.BOLD TEXT ) (
 ```
-Will compile to `(BOLD)`
-with "BOLD" in a bold font (so long as a bold font is avaiable).
+Will compile to `(TEXT)`
+with "TEXT" in a bold font (so long as a bold font is avaiable).
+
+Alternatively, one can use the macro `.FONTMOD` which has to be passed a font letter:
+```
+.FONTMOD B TEXT ) (
+```
+will compile the same as
+```
+.BOLD TEXT ) (
+```
