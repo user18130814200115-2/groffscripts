@@ -1,6 +1,17 @@
+.de FONTMOD
+\\$4\c
+.FT \\$1
+.ie \\n[#PRINT_STYLE]=2 \\$2
+.el .UNDERSCORE \\$2
+.FT R
+\h'-\w' 'u'\\$3
+..
 .de BOLD
-\\$3\E*[BD]\\$1\E*[PREV]\\$2
+.FONTMOD B \\$*
 ..
 .de ITALIC
-\\$3\E*[IT]\\$1\E*[PREV]\\$2
+.FONTMOD B \\$*
+..
+.de BOLDITALIC
+.FONTMOD BI \\$*
 ..
